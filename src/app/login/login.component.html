@@ -1,0 +1,44 @@
+<!-- Pagina de inicio de sesion -->
+
+<div class="bg-image">
+  <div class="container-fluid" id="general-block" style="padding-top: 20vh">
+    <!-- Cuadro principal -->
+    <div id="block" class="shadow-lg p-3 mb-5 bg-body rounded border bg-light">
+
+      <h3 class="text-secondary"> Bienvenido a GymTEC </h3>
+
+      <!-- Form de Inicio de Sesion -->
+      <form id = "form" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+          <div class="col-12">
+            <input type="email" id="email" class="form-control" placeholder="Correo electrónico" [(ngModel)]="loginData.correo" name="email">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <input type="password" id="password" class="form-control" placeholder="Contraseña" [(ngModel)]="loginData.password" name="password">
+          </div>
+        </div>
+
+        <ng-template [ngIf]="loginError">
+          <div class="alert alert-danger alert-dismissible fade show mt-2" style="padding-bottom: 20px; margin-bottom: -5px">
+            <button type="button" class="close" (click)="closeError()">&times;</button>
+            <strong>¡Error!</strong> No se pudo iniciar sesión.
+          </div>
+        </ng-template>
+        <div class="row mt-2">
+          <input id="send-btn" type="submit" class="btn btn-success" value="Iniciar Sesión">
+        </div>
+
+      </form>
+
+    </div>
+    <div class="row" style="margin-top: -40px">
+      <div class="col-12 text-center">
+        <p style="color: whitesmoke">¿No tiene una cuenta? <a routerLink="/register" class="link-primary">Regístrese</a></p>
+      </div>
+    </div>
+  </div>
+</div>

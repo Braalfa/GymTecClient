@@ -1,0 +1,149 @@
+.filter{
+  width: 19.5%;
+  margin: auto;
+  height: 85vh;
+  display: none;
+  margin-top: 3vh;
+  position: fixed;
+}
+.bg-image{
+  background-size: cover;
+  height: 130px;
+  background-repeat: no-repeat;
+}
+
+.general-store-block{
+  margin-top: 3vh;
+}
+
+.store-block{
+  margin: auto;
+  margin-top: 3vh;
+  height: 75vh;
+}
+
+.searchbar{
+  width: 90%;
+  padding: 0;
+}
+
+::ng-deep .modal:before {
+  content: '';
+  display: inline-block;
+  height: 15vh;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+.car-btn{
+  padding: 2px 13px 2px 13px;
+}
+::ng-deep .custom-slider .ngx-slider .ngx-slider-bubble {
+  font-size: 0.9em;
+}
+
+::ng-deep .custom-slider .ngx-slider .ngx-slider-pointer {
+  width: 20px;
+  height: 20px;
+  top: -8px;
+  z-index: 3;
+  @include rounded(5px);
+}
+
+::ng-deep .custom-slider .ngx-slider .ngx-slider-pointer:after {
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  top: 7.5px;
+  left: 7.5px;
+  @include rounded(2.5px);
+}
+
+@media (min-width: 0px) {
+  .filter{
+
+  }
+}
+
+@media (min-width: 360px) {
+  .filter{
+
+  }
+  .general-store-block{
+    width: 100%;
+  }
+  .store-block{
+    width: 80%;
+  }
+  .searchbar{
+    width: 75%;
+  }
+  .bg-image{
+    height: 160px;
+  }
+}
+
+@media (min-width: 576px) {
+  .filter{
+  }
+  .general-store-block{
+    width: 100%;
+  }
+  .store-block{
+    width: 100%;
+  }
+  .searchbar{
+    width: 70%;
+  }
+  .bg-image{
+    height: 150px;
+  }
+}
+
+@media (min-width: 768px) {
+  .filter{
+  }
+  .searchbar{
+    width: 60%;
+  }
+  .bg-image{
+    height: 130px;
+  }
+}
+
+@media (min-width: 992px) {
+  .filter{
+    display: block;
+  }
+  .general-store-block{
+    margin-left: 21%;
+    margin-top: 3vh;
+    width: 75%
+  }
+  .store-block{
+  }
+  .searchbar{
+    width: 50%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .filter{
+    display: block;
+  }
+  .general-store-block{
+    margin-left: 22%;
+    margin-top: 3vh;
+    width: 75%
+  }
+}
+
+@media (min-width: 1400px) {
+  .filter{
+    display: block;
+  }
+  .general-store-block{
+    margin-left: 23%;
+    margin-top: 3vh;
+    width: 75%
+  }
+}

@@ -1,0 +1,6 @@
+.bg-image{
+  background-image: url('src/assets/iot.jpg');
+  background-size: cover;
+  height: 100%;
+  background-repeat: no-repeat;
+}

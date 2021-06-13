@@ -1,0 +1,99 @@
+<div class="float-left border-right filter" style="overflow-y: auto">
+  <div class="text-center">
+    <h5 class="text-black mt-3 mb-3">Sucursal</h5>
+    <div style="margin-left: 40%" *ngFor="let sucursal of sucursales; index as i">
+      <div class="form-check mt-1 text-left">
+        <input class="form-check-input" type="checkbox" value="true" id="{{'s'+i}}"  name="{{'s'+i}}" [checked]="selectedSucursales[i]" (click)="sucursalSelected(i)">
+        <label class="form-check-label" for="{{'s'+i}}">
+          {{sucursal}}
+        </label>
+      </div>
+    </div>
+    <h5 class="text-black mt-3 mb-3">Tipo</h5>
+    <div style="margin-left: 40%" *ngFor="let tipo of tipos; index as i">
+      <div class="form-check mt-1 text-left">
+        <input class="form-check-input" type="checkbox" value="true" id="{{'t'+i}}"  name="{{'t'+i}}" [checked]="selectedTipos[i]" (click)="tipoSelected(i)">
+        <label class="form-check-label" for="{{'t'+i}}">
+          {{tipo}}
+        </label>
+      </div>
+    </div>
+    <h5 class="text-black mt-3 mb-3">Fecha Mínima</h5>
+    <div class="input-group" style="width: 70%; margin:auto;">
+      <input readonly class="form-control" [(ngModel)]="minDate"  (ngModelChange)="updateClases()" ngbDatepicker
+             #d1="ngbDatepicker"  id="minDate" name="minDate">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary rounded-right calendar" (click)="d1.toggle()" type="button">
+          <i class="bi-calendar"></i>
+        </button>
+      </div>
+    </div>
+    <h5 class="text-black mt-3 mb-3">Fecha Máxima</h5>
+    <div class="input-group" style="width: 70%; margin:auto;">
+      <input readonly class="form-control" [(ngModel)]="maxDate"  (ngModelChange)="updateClases()" ngbDatepicker
+             #d2="ngbDatepicker"  id="maxDate" name="maxDate">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary rounded-right calendar" (click)="d2.toggle()" type="button">
+          <i class="bi-calendar"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid general-store-block">
+  <div class="store-block">
+    <div class="row ml-auto mr-auto" style="width: 95%" >
+      <!--div class="col-lg-3 col-sm-6 col-md-4 p-2" *ngFor="let device of orderedDevices.filter(inPriceRange).filter(inTypesRange); index as i"-->
+      <ng-template [ngIf]="clases">
+      <div class="col-lg-3 col-sm-6 col-md-4 p-2" *ngFor="let clase of clases; index as i">
+        <div class="border pb-2">
+          <div class="bg-image" [ngStyle]="{ 'background-image': 'url( ' + clase.Imagen + ')'}"></div>
+          <div class="row ml-1 mt-2 mr-2">
+            <div class="col-6">
+              <div class="mt-1">
+                <h6>{{clase.Tipo}}</h6>
+              </div>
+            </div>
+            <div class="col-6 text-right">
+              <button [disabled]="clase.CupoDisponible==0" class="btn btn-primary car-btn" (click)="order(i)"><i class="bi bi-calendar-check-fill"></i></button>
+            </div>
+          </div>
+          <div class="mt-2 border-top">
+            <div class="row ml-1 mt-2 mb-2">
+              <div class="col-12">
+                <div class="text-muted" style="font-size: small">Fecha: {{clase.DatetimeInicio.toLocaleDateString()}}</div>
+              </div>
+              <div class="col-12">
+                <div class="text-muted" style="font-size: small">Hora de Inicio: {{clase.DatetimeInicio.toLocaleTimeString()}}</div>
+              </div>
+              <div class="col-12">
+                <div class="text-muted" style="font-size: small">Hora de Finalización: {{clase.DatetimeFinal.toLocaleTimeString()}}</div>
+              </div>
+              <div class="col-12">
+                <div class="text-muted" style="font-size: small">Modalidad: {{clase.Modalidad}}</div>
+              </div>
+              <div class="col-12">
+                <div class="text-muted" style="font-size: small">Instructor: {{clase.Instructor}}</div>
+              </div>
+              <div class="col-12">
+                <div class="text-muted" style="font-size: small">Sucursal: {{clase.ImpartidoEnSucursal}}</div>
+              </div>
+              <div class="col-12">
+                <div class="text-muted" style="font-size: small">Cupo Disponible: {{clase.CupoDisponible}}</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<app-activity-dialog  [type]="popUpTypeEnum.Register" (eventEmitter)="confirmOrder($event)"></app-activity-dialog>
+<app-success-dialog [header]="'Registro Confirmado'" [subheader]="'El registro se procesó exitosamente'"
+                    [message]="'Se ha añadido la clase a su calendario'"></app-success-dialog>
+<app-fail-dialog [header]="errorMsgHeader"
+                 [message]="errorMsg"></app-fail-dialog>

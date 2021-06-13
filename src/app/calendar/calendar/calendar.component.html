@@ -1,0 +1,56 @@
+<div class="mt-3" style="width: 85%; margin: auto;">
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="btn-group">
+        <div
+          class="btn btn-primary"
+          mwlCalendarPreviousView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="closeOpenMonthViewDay()"
+        >
+          Anterior
+        </div>
+        <div
+          class="btn btn-outline-secondary"
+          mwlCalendarToday
+          [(viewDate)]="viewDate"
+        >
+          Actual
+        </div>
+        <div
+          class="btn btn-primary"
+          mwlCalendarNextView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="closeOpenMonthViewDay()"
+        >
+          Siguiente
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+    </div>
+  </div>
+  <br />
+
+  <div [ngSwitch]="view" style="height: 75vh;overflow-y: hidden;overflow-x: hidden; padding-right:5px;">
+    <mwl-calendar-week-view
+      *ngSwitchCase="CalendarView.Week"
+      [viewDate]="viewDate"
+      [events]="events"
+      [refresh]="refresh"
+      [hourSegments]="1"
+      [hourSegmentHeight]="25"
+      [dayStartHour]="6"
+      [dayEndHour]="21"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      (eventTimesChanged)="eventTimesChanged($event)"
+    >
+    </mwl-calendar-week-view>
+  </div>
+</div>
+<app-activity-dialog [type]="popUpTypeEnum.Recall"></app-activity-dialog>
+<app-fail-dialog [header]="'Error'"
+                 [message]="'Error al comunicarse con el servidor'"></app-fail-dialog>

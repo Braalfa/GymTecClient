@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/36cb919f-c787-494b-8901-356ae500eaa3/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/GymTecClient",
+    "appService.deploySubpath": "."
+}
